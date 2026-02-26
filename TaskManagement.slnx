@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="../TaskManagement.Api/TaskManagementAPI.csproj" Id="eed486b0-5033-4fda-8d55-7e6aaafba2fd" />
-  <Project Path="../TaskManagementCore/TaskManagementCore.csproj" Id="9e1f53ab-3a90-4f71-85a7-4885b15dd5f1" />
-  <Project Path="TaskManagement.csproj" />
-</Solution>
