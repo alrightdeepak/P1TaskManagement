@@ -21,11 +21,11 @@ namespace TaskManagement.Services
         public async Task<UserData> Authenticate(string username, string password)
         {
             var response = await _httpClient.PostAsJsonAsync("api/users/auth", new { username, password });
-            if (!response.IsSuccessStatusCode)
-            {
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 return null;
-            }
-            return await response.Content.ReadFromJsonAsync<UserData>();
+            response.EnsureSuccessStatusCode();
+            var user= await response.Content.ReadFromJsonAsync<UserData>();
+            return user;
         }
         public async Task<bool> Validate(string username)
         {
