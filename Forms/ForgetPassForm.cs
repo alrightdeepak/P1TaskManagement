@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagement.Controllers;
-using TaskManagement.Models;
+using TaskManagementCore.Models;
 
 namespace TaskManagement.Forms
 {
@@ -26,9 +26,9 @@ namespace TaskManagement.Forms
             this.Close();
         }
 
-        private void verifyLabel_Click(object sender, EventArgs e)
+        private async void verifyLabel_Click(object sender, EventArgs e)
         {
-            bool isValidUser=_loginController.Validate(verifyUserTextbox.Text.Trim());
+            bool isValidUser= await _loginController.Validate(verifyUserTextbox.Text.Trim());
             if(isValidUser==false)
             {
                 MessageBox.Show("Username not found","Invalid User",MessageBoxButtons.OK,MessageBoxIcon.Error);
@@ -41,13 +41,13 @@ namespace TaskManagement.Forms
             }
         }
 
-        private void ForgetPassForm_Load(object sender, EventArgs e)
+        private async void ForgetPassForm_Load(object sender, EventArgs e)
         {
             newPassTextbox.Enabled=false;
             reNewPassTextbox.Enabled=false;
         }
 
-        private void ResetPassButton_Click(object sender, EventArgs e)
+        private async void ResetPassButton_Click(object sender, EventArgs e)
         {
             if(newPassTextbox.Text=="" || reNewPassTextbox.Text == "")
             {
@@ -59,7 +59,7 @@ namespace TaskManagement.Forms
             }
             else if(newPassTextbox.Text==reNewPassTextbox.Text)
             {
-                _loginController.ChangePassword(verifyUserTextbox.Text, newPassTextbox.Text);
+                await _loginController.ChangePassword(verifyUserTextbox.Text, newPassTextbox.Text);
                 MessageBox.Show("Password Changed Successfully!","",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 this.Close();
             }

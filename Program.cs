@@ -1,10 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagement.Controllers;
-using TaskManagement.DBConnection;
 using TaskManagement.Forms;
-using TaskManagement.Services.Implementation;
-using TaskManagement.Services.Interfaces;
+using TaskManagementCore.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
+using TaskManagement.Services;
 using System.IO;
 
 
@@ -19,15 +18,18 @@ namespace TaskManagement
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var configuration = new ConfigurationBuilder().SetBasePath(AppContext.BaseDirectory).AddJsonFile("appsettings.json", optional: false).Build();
 
             var services = new ServiceCollection();
-            services.AddSingleton<IConfiguration>(configuration);
-            services.AddSingleton<IDbConnectionFactory, PostgresConnectionFactory>();
-            services.AddSingleton<DatabaseExecutor>();
+            
+            services.AddHttpClient<IUserService, ApiUserService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7152/");
+            });
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ITaskService, TaskService>();
+            services.AddHttpClient<ITaskService, ApiTaskService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7152/");
+            });
             services.AddScoped<LoginController>();
             services.AddScoped<TaskController>();
 
@@ -38,9 +40,6 @@ namespace TaskManagement
             services.AddTransient<EditForm>();
 
             ServiceProvider = services.BuildServiceProvider();
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             try
             {
                 Application.Run(ServiceProvider.GetRequiredService<LoginForm>());
@@ -49,7 +48,7 @@ namespace TaskManagement
             {
                 MessageBox.Show(ex.ToString());
             }
-            //
+            
         }
     }
 }

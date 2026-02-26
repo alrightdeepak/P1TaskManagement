@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagement.Controllers;
 using TaskManagement.Forms;
-using TaskManagement.Models;
+using TaskManagementCore.Models;
 
 namespace TaskManagement
 {
@@ -32,12 +32,12 @@ namespace TaskManagement
         {
             currentUser = user;
         }
-        private void Form2_Load(object sender, EventArgs e)
+        private async void Form2_Load(object sender, EventArgs e)
         {
             greet.Text = $"Hello\n{currentUser.username.ToUpper()}!";
             EditButton.Visible = false;
             DeleteTaskButton.Visible = false;
-            userTasks = _taskController.ShowTasks(currentUser.userId);
+            userTasks = await _taskController.ShowTasks(currentUser.userId);
             TaskGrid.DataSource = userTasks;
             descriptionTextBox.Focus();
             TaskGrid.ClearSelection();
@@ -51,15 +51,15 @@ namespace TaskManagement
             }
             return null;
         }
-        private void AddButton_Click(object sender, EventArgs e)
+        private async void AddButton_Click(object sender, EventArgs e)
         {
             if (descriptionTextBox.Text != "")
             {
-                _taskController.AddTask(currentUser.userId, descriptionTextBox.Text);
+                await _taskController.AddTask(currentUser.userId, descriptionTextBox.Text);
                 var newTask = new TaskItems
                 {
                     userId = currentUser.userId,
-                    TaskID = _taskController.getNextTaskId(currentUser.userId)-1,
+                    TaskID = await _taskController.getNextTaskId(currentUser.userId)-1,
                     Description = descriptionTextBox.Text,
                     Status = false
                 };
@@ -77,7 +77,7 @@ namespace TaskManagement
             TaskGrid.ClearSelection();
         }
 
-        private void DeleteTaskButton_Click(object sender, EventArgs e)
+        private async void DeleteTaskButton_Click(object sender, EventArgs e)
         {
             var selectedTask = GetSelectedTask();
             if (selectedTask != null)
@@ -90,7 +90,7 @@ namespace TaskManagement
 
                 if (result == DialogResult.Yes)
                 {
-                    _taskController.RemoveTask(selectedTask);
+                    await _taskController.RemoveTask(selectedTask);
                     userTasks.Remove(selectedTask);
                 }
             }
@@ -141,7 +141,7 @@ namespace TaskManagement
                 TaskItems task = TaskGrid.Rows[e.RowIndex].DataBoundItem as TaskItems;
                 if (task != null)
                 {
-                    _taskController.EditTask(task.userId, task.TaskID, task.Description, task.Status);
+                    _taskController.EditTask(task);
                 }
             }
         }

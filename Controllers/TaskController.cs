@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using TaskManagement.Models;
-using TaskManagement.Services.Interfaces;
+using TaskManagementCore.Models;
+using TaskManagementCore.Services.Interfaces;
 
 namespace TaskManagement.Controllers
 {
@@ -13,27 +13,27 @@ namespace TaskManagement.Controllers
             _taskService = taskService;
         }
 
-        public BindingList<TaskItems> ShowTasks(int userId)
+        public Task<BindingList<TaskItems>> ShowTasks(int userId)
         {
             return _taskService.ShowTasks(userId);
         }
-        public int getNextTaskId(int userId)
+        public Task<int> getNextTaskId(int userId)
         {
             return _taskService.getNextTaskId(userId);
         }
-        public void AddTask(int userId, string description)
+        public Task AddTask(int userId, string description)
         {
-            _taskService.AddTask(userId, description);
+            return _taskService.AddTask(userId, description);
         }
 
-        public void RemoveTask(TaskItems task)
+        public Task RemoveTask(TaskItems task)
         {
-            _taskService.RemoveTask(task);
+            return _taskService.RemoveTask(task);
         }
 
-        public void EditTask(int userId, int taskId, string desc, bool status)
+        public Task EditTask(TaskItems task)
         {
-            _taskService.EditTask(userId, taskId, desc, status);
+            return _taskService.EditTask(task);
         }
     }
 }

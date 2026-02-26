@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagement.Controllers;
-using TaskManagement.Models;
+using TaskManagementCore.Models;
 
 namespace TaskManagement.Forms
 {
@@ -31,20 +31,27 @@ namespace TaskManagement.Forms
             this.Close();
         }
 
-        private void updateDescription_Click(object sender, EventArgs e)
+        private async void updateDescription_Click(object sender, EventArgs e)
         {
             string newDescription = newdescTextBox.Text;
             if (!string.IsNullOrEmpty(newDescription))
             {
                 try
                 {
-                    _taskController.EditTask(_selectedTask.userId, _selectedTask.TaskID, newDescription, false);
+                    var newTask = new TaskItems
+                    {
+                        userId = _selectedTask.userId,
+                        TaskID = _selectedTask.TaskID,
+                        Description = newDescription,
+                        Status = false
+                    };
+                    await _taskController.EditTask(newTask);
                     _selectedTask.Description = newDescription;
                     MessageBox.Show("Task edited successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch( Exception ex)
                 {
-                    MessageBox.Show("Description should be less than 50 characters", " Character Limit Crossed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.ToString(),"", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -55,7 +62,7 @@ namespace TaskManagement.Forms
             this.Close();
         }
 
-        private void EditForm_Load(object sender, EventArgs e)
+        private async void EditForm_Load(object sender, EventArgs e)
         {
             newdescTextBox.Text = _selectedTask.Description;
         }

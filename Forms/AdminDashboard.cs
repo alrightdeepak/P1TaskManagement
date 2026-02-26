@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskManagement.Controllers;
-using TaskManagement.Models;
-using TaskManagement.Services.Interfaces;
+using TaskManagementCore.Models;
+using TaskManagementCore.Services.Interfaces;
 
 namespace TaskManagement
 {
@@ -31,10 +30,10 @@ namespace TaskManagement
             currentAdmin = user;
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
+        private async void AdminDashboard_Load(object sender, EventArgs e)
         {
             GreetAdmin.Text = $"Hello\n{currentAdmin.username.ToUpper()}!";
-            EmployeeGrid.DataSource = _loginController.GetAll("employee");
+            EmployeeGrid.DataSource = await _loginController.GetAll("employee");
             TaskGrid.Visible = false;
             backLabel.Visible = false;
             comboBox1.Visible = false;
@@ -46,7 +45,7 @@ namespace TaskManagement
             this.Close();
         }
 
-        private void EmployeeGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void EmployeeGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && EmployeeGrid.Columns[e.ColumnIndex].Name=="EmployeeTaskColumn")
             {
@@ -55,8 +54,8 @@ namespace TaskManagement
                 backLabel.Visible = true;
                 int currentEmployeeId = Convert.ToInt32(EmployeeGrid.Rows[e.RowIndex].Cells["EmployeeId"].Value);
                 TaskGrid.AutoGenerateColumns = false;
-                TaskGrid.DataSource = _taskController.ShowTasks(currentEmployeeId);
-                allTasks = _taskController.ShowTasks(currentEmployeeId);
+                TaskGrid.DataSource = await _taskController.ShowTasks(currentEmployeeId);
+                allTasks = await _taskController.ShowTasks(currentEmployeeId);
                 comboBox1.Visible = true;
             }
         }

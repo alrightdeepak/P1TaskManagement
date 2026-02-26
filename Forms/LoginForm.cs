@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using TaskManagement.Models;
+using TaskManagementCore.Models;
 using TaskManagement.Controllers;
 using TaskManagement.Forms;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +21,9 @@ namespace TaskManagement
             _loginController = loginController;
             _serviceProvider = serviceProvider;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            UserData _user=_loginController.Authenticate(usernameTextBox.Text.Trim(),passwordTextBox.Text.Trim());
+            var _user= await _loginController.Authenticate(usernameTextBox.Text.Trim(),passwordTextBox.Text.Trim());
             if (_user == null)
             {
                 MessageBox.Show("Incorrect username or password", "Invalid Credentials",MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -49,7 +49,7 @@ namespace TaskManagement
         {
             this.Close();
         }
-        private void LoginForm_Load(object sender, EventArgs e)
+        private async void LoginForm_Load(object sender, EventArgs e)
         {
             passwordTextBox.UseSystemPasswordChar = true;
             hidePassword.Visible = false;

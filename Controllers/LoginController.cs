@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using TaskManagement.Models;
-using TaskManagement.Services.Interfaces;
+using TaskManagementCore.Models;
+using TaskManagementCore.Services.Interfaces;
 
 namespace TaskManagement.Controllers
 {
@@ -12,22 +12,22 @@ namespace TaskManagement.Controllers
             _userService = userService;
         }
 
-        public UserData Authenticate(string username, string password)
+        public Task<UserData> Authenticate(string username, string password)
         {
             return _userService.Authenticate(username, password);
         }
 
-        public bool Validate(string username)
+        public Task<bool> Validate(string username)
         {
             return _userService.Validate(username);
         }
 
-        public void ChangePassword(string username, string newPassword)
+        public Task ChangePassword(string username, string newPassword)
         {
-            _userService.ChangePassword(username, newPassword);
+            return _userService.ChangePassword(username, newPassword);
         }
 
-        public BindingList<UserData> GetAll(string role)
+        public Task<BindingList<UserData>> GetAll(string role)
         {
             return _userService.GetAll(role);
         }
