@@ -32,7 +32,7 @@ namespace TaskManagement
 
         private async void AdminDashboard_Load(object sender, EventArgs e)
         {
-            GreetAdmin.Text = $"Hello\n{currentAdmin.username.ToUpper()}!";
+            GreetAdmin.Text = $"Employee ID: {currentAdmin.userId}\nName: {currentAdmin.username.ToUpper()}";
             EmployeeGrid.DataSource = await _loginController.GetAll("employee");
             TaskGrid.Visible = false;
             backLabel.Visible = false;

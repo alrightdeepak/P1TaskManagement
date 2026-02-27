@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeDashboard));
             greet = new Label();
             label2 = new Label();
             AddButton = new Button();
@@ -43,11 +44,13 @@
             Description = new DataGridViewTextBoxColumn();
             Status = new DataGridViewCheckBoxColumn();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             descriptionTextBox = new TextBox();
             AddTaskLabel = new Label();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)TaskGrid).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,13 +58,13 @@
             // 
             greet.AutoSize = true;
             greet.BackColor = Color.Transparent;
-            greet.Font = new Font("Palatino Linotype", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            greet.Location = new Point(29, 50);
+            greet.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            greet.Location = new Point(41, 142);
             greet.Margin = new Padding(4, 0, 4, 0);
             greet.Name = "greet";
-            greet.Size = new Size(154, 32);
+            greet.Size = new Size(14, 21);
             greet.TabIndex = 0;
-            greet.Text = "Hi Employee";
+            greet.Text = ".";
             // 
             // label2
             // 
@@ -143,38 +146,38 @@
             TaskGrid.AllowUserToResizeRows = false;
             TaskGrid.BackgroundColor = SystemColors.Control;
             TaskGrid.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.SlateGray;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.LightSlateGray;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            TaskGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.SlateGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.LightSlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            TaskGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             TaskGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TaskGrid.Columns.AddRange(new DataGridViewColumn[] { userId, TaskID, Description, Status });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.LightSteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            TaskGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightSteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            TaskGrid.DefaultCellStyle = dataGridViewCellStyle2;
             TaskGrid.EnableHeadersVisualStyles = false;
             TaskGrid.GridColor = Color.Black;
             TaskGrid.Location = new Point(40, 119);
             TaskGrid.Margin = new Padding(4, 3, 4, 3);
             TaskGrid.MultiSelect = false;
             TaskGrid.Name = "TaskGrid";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            TaskGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            TaskGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             TaskGrid.RowHeadersVisible = false;
             TaskGrid.ScrollBars = ScrollBars.Vertical;
             TaskGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -223,13 +226,24 @@
             // panel1
             // 
             panel1.BackColor = Color.SlateGray;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(greet);
             panel1.ForeColor = SystemColors.ControlLight;
             panel1.Location = new Point(-1, -3);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(238, 483);
+            panel1.Size = new Size(227, 483);
             panel1.TabIndex = 18;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(51, 49);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(117, 74);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 26;
+            pictureBox1.TabStop = false;
             // 
             // descriptionTextBox
             // 
@@ -256,6 +270,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.White;
             panel2.Controls.Add(DeleteTaskButton);
             panel2.Controls.Add(AddButton);
             panel2.Controls.Add(LogoutButton);
@@ -264,10 +279,10 @@
             panel2.Controls.Add(TaskGrid);
             panel2.Controls.Add(descriptionTextBox);
             panel2.Controls.Add(AddTaskLabel);
-            panel2.Location = new Point(234, 0);
+            panel2.Location = new Point(226, 0);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(567, 477);
+            panel2.Size = new Size(574, 477);
             panel2.TabIndex = 25;
             // 
             // EmployeeDashboard
@@ -276,18 +291,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(798, 474);
-            ControlBox = false;
             Controls.Add(panel1);
             Controls.Add(panel2);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "EmployeeDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)TaskGrid).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -311,5 +327,6 @@
         private DataGridViewTextBoxColumn TaskID;
         private DataGridViewTextBoxColumn Description;
         private DataGridViewCheckBoxColumn Status;
+        private PictureBox pictureBox1;
     }
 }

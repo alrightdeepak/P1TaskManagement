@@ -34,7 +34,7 @@ namespace TaskManagement
         }
         private async void Form2_Load(object sender, EventArgs e)
         {
-            greet.Text = $"Hello\n{currentUser.username.ToUpper()}!";
+            greet.Text = $"Employee ID: {currentUser.userId}\nName: {currentUser.username.ToUpper()}";
             EditButton.Visible = false;
             DeleteTaskButton.Visible = false;
             userTasks = await _taskController.ShowTasks(currentUser.userId);
@@ -99,6 +99,8 @@ namespace TaskManagement
                 MessageBox.Show("Please select a task first.","No Task Selected",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             TaskGrid.ClearSelection();
+            DeleteTaskButton.Visible = false;
+            EditButton.Visible = false;
         }
         private void EditButton_Click(object sender, EventArgs e)
         {
@@ -115,6 +117,8 @@ namespace TaskManagement
             }
             TaskGrid.Refresh();
             TaskGrid.ClearSelection();
+            DeleteTaskButton.Visible = false;
+            EditButton.Visible = false;
         }
         private void LogoutButton_Click(object sender, EventArgs e)
         {

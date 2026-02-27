@@ -28,26 +28,25 @@ namespace TaskManagement
             {
                 MessageBox.Show("Incorrect username or password", "Invalid Credentials",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 usernameTextBox.Focus();
-                return;
             }
             else if (_user.userType=="employee")
             {  
                 var employee = _serviceProvider.GetRequiredService<EmployeeDashboard>();
                 employee.SetUser(_user);
-                employee.Show();
+                this.Hide();
+                employee.ShowDialog();
+                this.Show();
             }
             else if (_user.userType=="admin")
             {
                 var admin = _serviceProvider.GetRequiredService<AdminDashboard>();
                 admin.SetAdmin(_user);
-                admin.Show();
+                this.Hide();
+                admin.ShowDialog();
+                this.Show();
             }
-            usernameTextBox.Clear();
-            passwordTextBox.Clear();
-        }
-        private void closeLabel_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            usernameTextBox.Text=string.Empty;
+            passwordTextBox.Text=string.Empty;
         }
         private async void LoginForm_Load(object sender, EventArgs e)
         {

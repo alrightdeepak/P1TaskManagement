@@ -34,6 +34,7 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             LogoutButton = new Button();
             GreetAdmin = new Label();
             EmployeeGrid = new DataGridView();
@@ -47,12 +48,14 @@
             Description = new DataGridViewTextBoxColumn();
             Status = new DataGridViewCheckBoxColumn();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             backLabel = new Label();
             comboBox1 = new ComboBox();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)EmployeeGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TaskGrid).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,14 +77,14 @@
             // GreetAdmin
             // 
             GreetAdmin.AutoSize = true;
-            GreetAdmin.Font = new Font("Palatino Linotype", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            GreetAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             GreetAdmin.ForeColor = SystemColors.ControlLight;
-            GreetAdmin.Location = new Point(48, 51);
+            GreetAdmin.Location = new Point(43, 140);
             GreetAdmin.Margin = new Padding(4, 0, 4, 0);
             GreetAdmin.Name = "GreetAdmin";
-            GreetAdmin.Size = new Size(122, 32);
+            GreetAdmin.Size = new Size(14, 21);
             GreetAdmin.TabIndex = 10;
-            GreetAdmin.Text = "Hi Admin";
+            GreetAdmin.Text = ".";
             // 
             // EmployeeGrid
             // 
@@ -261,12 +264,23 @@
             // panel1
             // 
             panel1.BackColor = Color.SlateGray;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(GreetAdmin);
             panel1.Location = new Point(-4, -5);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(230, 483);
             panel1.TabIndex = 21;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(54, 47);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(117, 74);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 26;
+            pictureBox1.TabStop = false;
             // 
             // backLabel
             // 
@@ -316,14 +330,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(798, 473);
-            ControlBox = false;
             Controls.Add(panel1);
             Controls.Add(panel2);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Load += AdminDashboard_Load;
@@ -331,6 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)TaskGrid).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -355,5 +371,6 @@
         private DataGridViewTextBoxColumn EmployeeID;
         private DataGridViewTextBoxColumn EmployeeName;
         private DataGridViewButtonColumn EmployeeTaskColumn;
+        private PictureBox pictureBox1;
     }
 }
